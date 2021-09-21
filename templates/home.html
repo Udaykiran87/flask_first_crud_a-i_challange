@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial;}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+.c-button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+/* Style the active class, and buttons on mouse-over */
+.active, .c-button:hover {
+  background-color: #666;
+  color: white;
+}
+</style>
+</head>
+<body>
+
+<h2>Tabs</h2>
+<p>Click on the buttons inside the tabbed menu:</p>
+
+<div class="tab">
+<!--  <button class="tablinks" (click)="database('MySql')">MYSQL</button>-->
+<!--  <button class="tablinks" (click)="database('MongoDb')">MONGODB</button>-->
+<!--  <button class="tablinks" (click)="database('Cassandra')">CASSANDRA</button>-->
+
+  <button class="tablinks" onclick="openCity(event, 'MySql')">MYSQL</button>
+  <button class="tablinks" onclick="openCity(event, 'MongoDb')">MONGODB</button>
+  <button class="tablinks" onclick="openCity(event, 'Cassandra')">CASSANDRA</button>
+</div>
+
+<div id="MySql" class="tabcontent">
+  <a type="button" class="c-button" href="{{ url_for('home') }}">HOME</a>
+  <a type="button" class="c-button" href="{{ url_for('create_mysql') }}">CREATE</a>
+  <a type="button" class="c-button" href="{{ url_for('insert_mysql') }}">INSERT</a>
+  <a type="button" class="c-button" href="{{ url_for('update_mysql') }}">UPDATE</a>
+  <a type="button" class="c-button" href="{{ url_for('delete_mysql') }}">DELETE</a>
+  <a type="button" class="c-button" href="{{ url_for('read_download_mysql') }}">READ_DOWNLOAD</a>
+</div>
+
+<div id="MongoDb" class="tabcontent" >
+  <a type="button" class="c-button" href="{{ url_for('home') }}">HOME</a>
+  <a type="button" class="c-button" href="{{ url_for('create_mongodb') }}">CREATE</a>
+  <a type="button" class="c-button" href="{{ url_for('insert_mongodb') }}">INSERT</a>
+  <a type="button" class="c-button" href="{{ url_for('update_mongodb') }}">UPDATE</a>
+  <a type="button" class="c-button" href="{{ url_for('delete_mongodb') }}">DELETE</a>
+  <a type="button" class="c-button" href="{{ url_for('read_download_mongodb') }}">READ_DOWNLOAD</a>
+</div>
+
+<div id="Cassandra" class="tabcontent">
+  <a type="button" class="c-button" href="{{ url_for('home') }}">HOME</a>
+  <a type="button" class="c-button" href="{{ url_for('create_cassandra') }}">CREATE</a>
+  <a type="button" class="c-button" href="{{ url_for('insert_cassandra') }}">INSERT</a>
+  <a type="button" class="c-button" href="{{ url_for('update_cassandra') }}">UPDATE</a>
+  <a type="button" class="c-button" href="{{ url_for('delete_cassandra') }}">DELETE</a>
+  <a type="button" class="c-button" href="{{ url_for('read_download_cassandra') }}">READ_DOWNLOAD</a>
+</div>
+
+<script>
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+</script>
+
+</body>
+</html>
+
+{% endblock %}

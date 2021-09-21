@@ -1,0 +1,53 @@
+<style>
+body {font-family: Arial;}
+.c-button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+/* Style the active class, and buttons on mouse-over */
+.active, .c-button:hover {
+  background-color: #666;
+  color: white;
+}
+</style>
+{% extends "base.html" %}
+{% block content %}
+<table>
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>title</th>
+        <th>release_year</th>
+        <th>genre</th>
+        <th>imdb_rating</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for row in value %}
+            <tr>
+                <td>{{row[0]}}</td>
+                <td>{{row[1]}}</td>
+                <td>{{row[2]}}</td>
+                <td>{{row[3]}}</td>
+                <td>{{row[4]}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% if database == 'mysql' %}
+    <a type="button" class="c-button" href="{{ url_for('downloadcsv_mysql') }}">DOWNLOAD CSV</a>
+{% elif database == 'mongodb' %}
+    <a type="button" class="c-button" href="{{ url_for('downloadcsv_mongodb') }}">DOWNLOAD CSV</a>
+{% elif database == 'cassandra' %}
+    <a type="button" class="c-button" href="{{ url_for('downloadcsv_cassandra') }}">DOWNLOAD CSV</a>
+{% endif %}
+
+{% endblock %}

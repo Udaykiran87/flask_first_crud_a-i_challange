@@ -1,0 +1,41 @@
+<html>
+    <head>
+        {% if title %}
+        <title>{{ title }} - API</title>
+        {% else %}
+        <title>API</title>
+        {% endif %}
+    </head>
+    <body>
+        <div>
+            API:
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('create_mysql') }}">Create_mysql</a>
+            <a href="{{ url_for('insert_mysql') }}">Insert_mysql</a>
+            <a href="{{ url_for('update_mysql') }}">Update_mysql</a>
+            <a href="{{ url_for('delete_mysql') }}">Delete_mysql</a>
+            <a href="{{ url_for('read_download_mysql') }}">Read_Download_mysql</a>
+            <a href="{{ url_for('create_mongodb') }}">Create_mongodb</a>
+            <a href="{{ url_for('insert_mongodb') }}">Insert_mongodb</a>
+            <a href="{{ url_for('update_mongodb') }}">Update_mongodb</a>
+            <a href="{{ url_for('delete_mongodb') }}">Delete_mongodb</a>
+            <a href="{{ url_for('read_download_mongodb') }}">Read_Download_mongodb</a>
+            <a href="{{ url_for('create_cassandra') }}">Create_cassandra</a>
+            <a href="{{ url_for('insert_cassandra') }}">Insert_cassandra</a>
+            <a href="{{ url_for('update_cassandra') }}">Update_cassandra</a>
+            <a href="{{ url_for('delete_cassandra') }}">Delete_cassandra</a>
+            <a href="{{ url_for('read_download_cassandra') }}">Read_Download_cassandra</a>
+        </div>
+        <hr>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </body>
+</html>
